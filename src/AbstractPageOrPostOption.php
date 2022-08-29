@@ -95,9 +95,10 @@ abstract class AbstractPageOrPostOption implements PageOrPostOption
     public function onChange(int $postId, ?array $data): void
     {
         $rawValue = $data[static::$key] ?? null;
-        $value = isset($rawValue) && is_string($rawValue)
-            ? sanitize_text_field($rawValue)
-            : '';
+        $value =
+            isset($rawValue) && is_string($rawValue)
+                ? sanitize_text_field($rawValue)
+                : '';
 
         update_post_meta($postId, static::getMetaKey(), $value);
     }
@@ -108,7 +109,7 @@ abstract class AbstractPageOrPostOption implements PageOrPostOption
     public function render(WP_Post $post): void
     {
         $this->nonceField->render();
-        $rawValue =  $this->getValue($post->ID);
+        $rawValue = $this->getValue($post->ID);
         $value = is_string($rawValue) ? $rawValue : '';
 
         MetaForms::makeTextInputField()
