@@ -2,7 +2,6 @@
   "name": "sillynet/adretto-extension-simple-post-options",
   "description": "Adretto extension for easy setup of page and post options.",
   "type":"library",
-  "version": "0.0.0",
   "require": {
     "php": ">=7.4",
     "gebruederheitz/wp-meta-fields": "^1.0",
