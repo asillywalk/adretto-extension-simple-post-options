@@ -1,0 +1,29 @@
+{
+  "name": "@sillynet/adretto-extension-simple-post-options-util",
+  "version": "0.1.1",
+  "description": "Utilities for the sillynet/adretto-extension-simple-post-options PHP composer package",
+  "main": "",
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "lint": "prettier -c --config ../.prettierrc ../src/",
+    "release": "release-it --only-version",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asillywalk/adretto-extension-simple-post-options.git"
+  },
+  "author": "Andreas Maros <andi@sillynet.de>",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/asillywalk/adretto-extension-simple-post-options/issues"
+  },
+  "homepage": "https://github.com/asillywalk/adretto-extension-simple-post-options#readme",
+  "dependencies": {
+    "@prettier/plugin-php": "^0.18.0",
+    "prettier": "^2.5.1",
+    "release-it": "^14.12.4"
+  }
+}
