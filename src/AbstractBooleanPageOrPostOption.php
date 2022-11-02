@@ -19,9 +19,9 @@ abstract class AbstractBooleanPageOrPostOption extends AbstractPageOrPostOption
     {
         $this->nonceField->render();
         $checked = $this->getValue($post->ID);
-        MetaForms::makeCheckboxField(static::$key)
+        MetaForms::makeCheckboxField(static::getKey())
             ->setChecked($checked)
-            ->setLabel(static::$inputLabel)
+            ->setLabel(static::getInputLabel())
             ->render();
     }
 
@@ -38,7 +38,8 @@ abstract class AbstractBooleanPageOrPostOption extends AbstractPageOrPostOption
      */
     public function onChange(int $postId, ?array $data): void
     {
-        $value = isset($data[static::$key]) && $data[static::$key] === 'on';
+        $value =
+            isset($data[static::getKey()]) && $data[static::getKey()] === 'on';
         update_post_meta($postId, static::getMetaKey(), $value);
     }
 

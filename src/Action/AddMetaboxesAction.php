@@ -10,7 +10,10 @@ use Sillynet\Adretto\SimplePostOptions\Metabox;
 class AddMetaboxesAction extends InvokerWordpressHookAction implements
     ActionHookAction
 {
-    public const WP_HOOK = 'add_meta_boxes';
+    public static function getWpHookName(): string
+    {
+        return 'add_meta_boxes';
+    }
 
     public function __invoke(...$args)
     {

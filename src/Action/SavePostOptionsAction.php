@@ -12,11 +12,14 @@ use WP_Post;
 class SavePostOptionsAction extends InvokerWordpressHookAction implements
     ActionHookAction
 {
-    public const WP_HOOK = 'save_post';
-
     public const ARGUMENT_COUNT = 2;
 
     protected NonceField $nonceField;
+
+    public static function getWpHookName(): string
+    {
+        return 'save_post';
+    }
 
     public function __construct(NonceField $nonceField)
     {

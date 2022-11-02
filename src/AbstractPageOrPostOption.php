@@ -13,23 +13,23 @@ abstract class AbstractPageOrPostOption implements PageOrPostOption
 {
     protected static bool $hasLinks = false;
 
-    protected static string $key = '';
-
-    protected static string $inputLabel = '';
-
-    /** @var class-string  */
-    protected static string $metaboxClassName;
-
     protected Metabox $metabox;
 
     protected NonceField $nonceField;
+
+    abstract protected static function getKey(): string;
+
+    abstract protected static function getInputLabel(): string;
+
+    /** @return class-string */
+    abstract protected static function getMetaboxClassName(): string;
 
     public function __construct(NonceField $nonceField, ContainerInterface $c)
     {
         $this->nonceField = $nonceField;
 
         /** @var Metabox $metabox */
-        $metabox = $c->get(static::$metaboxClassName);
+        $metabox = $c->get(static::getMetaboxClassName());
         $this->metabox = $metabox;
 
         add_action($this->metabox->getRenderHook(), [$this, 'render']);
@@ -94,7 +94,7 @@ abstract class AbstractPageOrPostOption implements PageOrPostOption
      */
     public function onChange(int $postId, ?array $data): void
     {
-        $rawValue = $data[static::$key] ?? null;
+        $rawValue = $data[static::getKey()] ?? null;
         $value =
             isset($rawValue) && is_string($rawValue)
                 ? sanitize_text_field($rawValue)
@@ -113,15 +113,15 @@ abstract class AbstractPageOrPostOption implements PageOrPostOption
         $value = is_string($rawValue) ? $rawValue : '';
 
         MetaForms::makeTextInputField()
-            ->setName(static::$key)
+            ->setName(static::getKey())
             ->setValue($value)
-            ->setLabel(static::$inputLabel)
+            ->setLabel(static::getInputLabel())
             ->render();
     }
 
     public static function getMetaKey(): string
     {
-        return '_' . static::$key;
+        return '_' . static::getKey();
     }
 
     private function initScripts(): void

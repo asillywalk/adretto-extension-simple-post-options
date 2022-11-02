@@ -5,7 +5,7 @@
   "require": {
     "php": ">=7.4",
     "gebruederheitz/wp-meta-fields": "^1.0",
-    "sillynet/adretto": "^0.1.0"
+    "sillynet/adretto": "^0.2.0"
   },
   "license": "GPL-3.0-only",
   "authors": [

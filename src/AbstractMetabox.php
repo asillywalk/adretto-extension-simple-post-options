@@ -5,12 +5,8 @@ namespace Sillynet\Adretto\SimplePostOptions;
 /**
  * @phpstan-import-type MetaboxContext from Metabox
  */
-class AbstractMetabox implements Metabox
+abstract class AbstractMetabox implements Metabox
 {
-    public static string $key = '';
-
-    protected static string $title = '';
-
     /** @var MetaboxContext */
     protected static string $context = 'side';
 
@@ -33,10 +29,7 @@ class AbstractMetabox implements Metabox
         return static::$context;
     }
 
-    public function getKey(): string
-    {
-        return static::$key;
-    }
+    abstract public function getKey(): string;
 
     /**
      * @return array<string>
@@ -48,13 +41,10 @@ class AbstractMetabox implements Metabox
 
     public function getRenderHook(): string
     {
-        return Hook::ACTION_RENDER_FIELDS . static::$key;
+        return Hook::ACTION_RENDER_FIELDS . $this->getKey();
     }
 
-    public function getTitle(): string
-    {
-        return static::$title;
-    }
+    abstract public function getTitle(): string;
 
     public function render(\WP_Post $post): void
     {
